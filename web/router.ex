@@ -23,8 +23,7 @@ defmodule NewsApp.Router do
   # scope "/api", NewsApp do
   #   pipe_through :api
   # end
-  # 
-  
+  #
   scope "/", NewsApp do
     pipe_through :api
     get     "/news/top",                  NewsController,     :top_news

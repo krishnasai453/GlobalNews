@@ -13,7 +13,6 @@ defmodule NewsApp.News do
     field :url,       		:string
     field :urlToImage,		:string
 
-
     timestamps()
   end
 
@@ -31,12 +30,19 @@ defmodule NewsApp.News do
     |> unique_constraint(:title)
   end
 
-
   def get_top_news(scope \\ __MODULE__) do
     sort_by = "top"
     # scope |> where([u], ^sort_by in [u.sort_by])
     # Repo.all(NewsApp.News) |> where([u], ^sort_by in [u.sort_by])
     from w in NewsApp.News,
+     where: w.sort_by == ^sort_by,
+     select: w
+  end
+
+  def get_latest_news(scope \\ __MODULE__) do
+    sort_by = "latest"
+    # get_news(sort_by)
+    from w in scope,
      where: w.sort_by == ^sort_by,
      select: w
   end

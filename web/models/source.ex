@@ -10,10 +10,10 @@ defmodule NewsApp.Source do
     field :url,                :string
     field :category,			     :string
     field :language,           :string
-    field :country,            :string    
+    field :country,            :string
     field :urlsToLogos,		     :map
     field :sortBysAvailable,   {:array, :string}, primary_key: true
-    
+
     timestamps()
   end
 
@@ -29,5 +29,11 @@ defmodule NewsApp.Source do
     struct
     |> cast(params, @required_fields, @optional_fields)
     |> unique_constraint(:name)
+  end
+
+  def get_news_sources(scope \\ __MODULE__, sort_by) do
+    from w in NewsApp.Source,
+     where: w.sortBysAvailable == ^sort_by,
+     select: w
   end
 end

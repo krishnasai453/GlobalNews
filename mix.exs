@@ -19,7 +19,7 @@ defmodule NewsApp.Mixfile do
   def application do
     [mod: {NewsApp, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :httpoison, :mongodb_ecto, :quantum]]
+                    :phoenix_ecto, :httpoison, :mongodb_ecto, :quantum, :credo]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +39,7 @@ defmodule NewsApp.Mixfile do
      {:gettext,                "~> 0.11"},
      {:cowboy,                 "~> 1.0"},
      {:httpoison,              "~> 0.11.0"},
+     {:credo,                  "~> 0.5", only: [:dev, :test]},
      {:quantum,                ">= 1.9.0"},
      {:ecto,                   "~> 1.0", override: true}]
   end
