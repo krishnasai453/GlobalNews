@@ -13,6 +13,8 @@ defmodule NewsApp.NewsController do
 
   def latest_news(conn, _params) do
     news = News.get_latest_news |>  Repo.all
+    IO.inspect "========latest News ====="
+    IO.inspect news
     render(conn, "show.json", news: news)
   end
 end

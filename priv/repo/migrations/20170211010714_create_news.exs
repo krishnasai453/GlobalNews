@@ -12,8 +12,9 @@ defmodule NewsApp.Repo.Migrations.CreateNews do
       add :title,         :string
       add :url,           :string
       add :urlToImage,    :string
-
-      timestamps
+      add :inserted_at,     :string
+      add :updated_at,      :string
+      
     end
    create unique_index(:news, [:title], unique: true)
   end

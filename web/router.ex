@@ -26,9 +26,10 @@ defmodule NewsApp.Router do
   #
   scope "/", NewsApp do
     pipe_through :api
-    get     "/news/top",                  NewsController,     :top_news
-    get     "/news/latest",               NewsController,     :latest_news
-    get     "/source",                    SourceController,   :get_sources
-
+    get     "/news/top",                  NewsController,           :top_news
+    get     "/news/latest",               NewsController,           :latest_news
+    get     "/source",                    SourceController,         :get_sources
+    post    "/feedback",                  FeedbackController,         :create_feedback
+    post    "/subscription",              SubscriptionController,   :create_subscription
   end
 end

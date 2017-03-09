@@ -2,7 +2,7 @@ defmodule NewsApp.NewsView do
   use NewsApp.Web, :view
 
   def render("show.json", %{news: news}) do
-    %{news: render_many(news, NewsApp.NewsView, "news.json")}
+    render_many(news, NewsApp.NewsView, "news.json")
   end
 
   def render("news.json", %{news: news}) do

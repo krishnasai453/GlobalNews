@@ -1,6 +1,6 @@
 defmodule NewsApp.SourceController do
   use NewsApp.Web, :controller
-  alias NewsApp.{Source, Repo}
+  alias NewsApp.{Source, Repo, CronJobHandler}
 
   def get_sources(conn, _params) do
     url = "https://newsapi.org/v1/sources?apiKey=fd355360d8b246c8a811cd6c88e34bc9"

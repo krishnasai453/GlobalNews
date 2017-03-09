@@ -14,8 +14,9 @@ def change do
       add :country,            :string
       add :urlsToLogos,        :map
       add :sortBysAvailable,   {:array, :string}, primary_key: true
-
-      timestamps
+      
+      add :inserted_at,     :string
+      add :updated_at,      :string
     end
    create unique_index(:sources, [:name], unique: true)
   end

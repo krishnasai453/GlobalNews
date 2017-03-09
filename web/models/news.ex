@@ -1,8 +1,8 @@
 defmodule NewsApp.News do
   use NewsApp.Web, :model
   import Ecto.Query
-  alias NewsApp.Repo
-
+  alias NewsApp.{Repo, Parsers}
+  
   schema "news" do
     field :source,      	:string
     field :sort_by,     	:string, primary_key: true
@@ -12,8 +12,8 @@ defmodule NewsApp.News do
     field :title,  			  :string
     field :url,       		:string
     field :urlToImage,		:string
-
-    timestamps()
+    field :inserted_at,   :string, default: Parsers.now()
+    field :updated_at,    :string, default: Parsers.now()
   end
 
 @required_fields ~w(source sort_by author description title)
@@ -35,15 +35,17 @@ defmodule NewsApp.News do
     # scope |> where([u], ^sort_by in [u.sort_by])
     # Repo.all(NewsApp.News) |> where([u], ^sort_by in [u.sort_by])
     from w in NewsApp.News,
-     where: w.sort_by == ^sort_by,
-     select: w
+      limit: 10,
+      where: w.sort_by == ^sort_by,
+      select: w
   end
 
   def get_latest_news(scope \\ __MODULE__) do
     sort_by = "latest"
     # get_news(sort_by)
     from w in scope,
-     where: w.sort_by == ^sort_by,
-     select: w
+      limit: 10,
+      where: w.sort_by == ^sort_by,
+      select: w
   end
 end

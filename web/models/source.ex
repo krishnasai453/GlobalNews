@@ -1,7 +1,7 @@
 defmodule NewsApp.Source do
   use NewsApp.Web, :model
   import Ecto.Query
-  alias NewsApp.Repo
+  alias NewsApp.{Repo, Parsers}
 
   schema "sources" do
     field :source_id,          :string, primary_key: true
@@ -13,8 +13,8 @@ defmodule NewsApp.Source do
     field :country,            :string
     field :urlsToLogos,		     :map
     field :sortBysAvailable,   {:array, :string}, primary_key: true
-
-    timestamps()
+    field :inserted_at,        :string, default: Parsers.now()
+    field :updated_at,         :string, default: Parsers.now()
   end
 
 @required_fields ~w(source_id name description sortBysAvailable category url)
