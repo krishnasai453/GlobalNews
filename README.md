@@ -1,5 +1,8 @@
 # NewsApp
 
+Comprehensive up-to-date news, aggregated from sources all over the world
+
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
